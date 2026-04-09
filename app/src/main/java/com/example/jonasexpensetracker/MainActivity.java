@@ -41,15 +41,22 @@ public class MainActivity extends AppCompatActivity {
         });
         binding.addExpenseButton.setOnClickListener(v->{
             int amount=viewModel.getInputAmount();
-            viewModel.addExpense(amount);
+            viewModel.getTotalExpenseFromModel(amount);
+            viewModel.getCurrentBalanceFromModel();
         });
+
     }
 
     private void setupObservers(){
-        viewModel.getTotalAmount().observe(this,total->{
-            binding.showTotalAmountSpend.setText("Gesamter Betrag: \n"+String.valueOf(total)+"€");
+        viewModel.getMonthlyIncome().observe(this,total->{
+            binding.showMonthlyIncome.setText("Monthly Income: "+String.valueOf(total)+"€");
         });
-
+        viewModel.getTotalExpense().observe(this,total->{
+            binding.showTotalAmountSpend.setText("Total Expense: "+String.valueOf(total)+"€");
+        });
+        viewModel.getCurrentBalance().observe(this,total->{
+            binding.CurrentBalance.setText("Current Balance: "+String.valueOf(total)+"€");
+        });
     }
 
 }

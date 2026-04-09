@@ -7,32 +7,42 @@ import androidx.lifecycle.ViewModel;
 public class MainViewModel extends ViewModel {
 
   private final Model model;
-    private final MutableLiveData<Integer>totalAmountLiveData=new MutableLiveData<>(0);
-    private int currentTotal=0;
-    int currentAmountSpend;
-    int inputAmount;
-    int monthlyAmountSpend;
+    private final MutableLiveData<Integer>monthlyIncomeLiveData=new MutableLiveData<>(0);
+    private final MutableLiveData<Integer>totalExpenseLiveData=new MutableLiveData<>(0);
+    private final MutableLiveData<Integer>currentBalanceLiveData=new MutableLiveData<>(0);
+
+    int inputNewExpense;
     public MainViewModel(Model model){
         super();
         this.model=model;
     }
 
-    public LiveData<Integer> getTotalAmount(){
-        return totalAmountLiveData;
+    public LiveData<Integer>getMonthlyIncome(){
+        return monthlyIncomeLiveData;
     }
-    public void addExpense(int amount){
-        model.add(amount);
-        int total=model.getTotal();
-        totalAmountLiveData.setValue(total);
+    public LiveData<Integer> getTotalExpense(){
+        return totalExpenseLiveData;
     }
+    public LiveData<Integer>getCurrentBalance(){
+        return currentBalanceLiveData;
+    }
+
+    public void getTotalExpenseFromModel(int amount){
+        model.addExpenses(amount);
+        totalExpenseLiveData.setValue(model.getTotal());
+    }
+    public void getCurrentBalanceFromModel(){
+        currentBalanceLiveData.setValue(model.getCurrentBalance());
+    }
+
 
     public void onInputAmountChanged(String string){
         if(!string.equals("")) {
-            this.inputAmount = Integer.parseInt(string);
+            this.inputNewExpense = Integer.parseInt(string);
         }
     }
     public int getInputAmount(){
-        return  inputAmount;
+        return  inputNewExpense;
     }
 
 
