@@ -2,17 +2,17 @@ package com.example.jonasexpensetracker;
 
 public class Model {
     private int income;
-private int totalExpenses;
+private double totalExpenses;
 private int currentBalance;
 
 
-public void addExpenses(int integer){
-totalExpenses+=integer;
+public void addExpenses(double doub){
+totalExpenses+=doub;
 }
-public int getCurrentBalance(){
+public double getCurrentBalance(){
    return currentBalance-totalExpenses;
 }
-public int getTotal(){
+public double getTotal(){
     return totalExpenses;
 }
 

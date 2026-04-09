@@ -33,14 +33,15 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                    viewModel.onInputAmountChanged(charSequence.toString());
+                String input=charSequence.toString();
+                    viewModel.onInputAmountChanged(input);
             }
             @Override
             public void afterTextChanged(Editable editable) {
             }
         });
         binding.addExpenseButton.setOnClickListener(v->{
-            int amount=viewModel.getInputAmount();
+            double amount=viewModel.getInputAmount();
             viewModel.getTotalExpenseFromModel(amount);
             viewModel.getCurrentBalanceFromModel();
         });
