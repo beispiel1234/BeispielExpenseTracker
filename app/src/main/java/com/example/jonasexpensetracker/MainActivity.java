@@ -1,8 +1,10 @@
 package com.example.jonasexpensetracker;
+import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.widget.EditText;
 
 import androidx.appcompat.app.AlertDialog;
@@ -12,6 +14,8 @@ import androidx.lifecycle.ViewModelProvider;
 import com.example.jonasexpensetracker.databinding.ActivityMainBinding;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -45,6 +49,11 @@ public class MainActivity extends AppCompatActivity {
         });
         builder.show();
 
+        // insert Date
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String currentDate= LocalDate.now().format(DateTimeFormatter.ofPattern("dd.MM.yyyy"));
+            binding.Date.setText(currentDate);
+        }
 
     }
 
