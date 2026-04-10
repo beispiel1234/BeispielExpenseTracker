@@ -35,8 +35,11 @@ public class MainViewModel extends ViewModel {
         model.addExpenses(amount);
         totalExpenseLiveData.setValue(model.getTotal());
     }
+    public void setCurrentBalanceLiveDataInitially(){
+        currentBalanceLiveData.setValue(monthlyIncomeLiveData.getValue());
+    }
     public void getCurrentBalanceFromModel(){
-        currentBalanceLiveData.setValue(model.getCurrentBalance(monthlyIncomeLiveData.getValue()));
+        currentBalanceLiveData.setValue(model.getCurrentBalance(currentBalanceLiveData.getValue()));
     }
 
 

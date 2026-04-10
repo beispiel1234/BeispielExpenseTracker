@@ -38,8 +38,11 @@ public class MainActivity extends AppCompatActivity {
             String value=input.getText().toString();
             double number=Double.parseDouble(value);
             viewModel.setMonthlyIncome(number);
+            //set currentBalance to Monthly income
+            viewModel.setCurrentBalanceLiveDataInitially();
         });
         builder.show();
+
 
     }
 
