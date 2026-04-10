@@ -1,20 +1,22 @@
 package com.example.jonasexpensetracker;
 
+import java.math.BigDecimal;
+
 public class Model {
-private double totalExpenses;
+private BigDecimal totalExpenses=new BigDecimal(0);
 
-private double inputExpense;
+private BigDecimal inputExpense=new BigDecimal(0);
 
 
 
-public void addExpenses(double doub){
-    inputExpense=doub;
-totalExpenses+=doub;
+public void addExpenses(BigDecimal bigDecimal){
+    inputExpense=bigDecimal;
+    totalExpenses=totalExpenses.add(bigDecimal);
 }
-public double getCurrentBalance(double currentBalance){
-   return currentBalance-inputExpense;
+public BigDecimal getCurrentBalance(BigDecimal currentBalance){
+   return currentBalance.subtract(inputExpense);
 }
-public double getTotal(){
+public BigDecimal getTotal(){
     return totalExpenses;
 }
 

@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.example.jonasexpensetracker.databinding.ActivityMainBinding;
 
+import java.math.BigDecimal;
+
 public class MainActivity extends AppCompatActivity {
 
     private MainViewModel viewModel;
@@ -36,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         builder.setView(input);
         builder.setPositiveButton("OK",(dialog,which)->{
             String value=input.getText().toString();
-            double number=Double.parseDouble(value);
+            BigDecimal number= BigDecimal.valueOf(Double.parseDouble(value));
             viewModel.setMonthlyIncome(number);
             //set currentBalance to Monthly income
             viewModel.setCurrentBalanceLiveDataInitially();
@@ -61,7 +63,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         binding.addExpenseButton.setOnClickListener(v->{
-            double amount=viewModel.getInputAmount();
+            BigDecimal amount=viewModel.getInputAmount();
             viewModel.getTotalExpenseFromModel(amount);
             viewModel.getCurrentBalanceFromModel();
         });
