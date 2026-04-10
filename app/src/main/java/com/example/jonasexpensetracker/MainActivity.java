@@ -1,8 +1,11 @@
 package com.example.jonasexpensetracker;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.widget.EditText;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -24,6 +27,20 @@ public class MainActivity extends AppCompatActivity {
         viewModel=new ViewModelProvider(this,factory).get(MainViewModel.class);
         setupListeners();
         setupObservers();
+
+        //insert Income
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("Enter your monthly income.");
+        final EditText input=new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER);
+        builder.setView(input);
+        builder.setPositiveButton("OK",(dialog,which)->{
+            String value=input.getText().toString();
+            double number=Double.parseDouble(value);
+            viewModel.setMonthlyIncome(number);
+        });
+        builder.show();
+
     }
 
     private void setupListeners(){

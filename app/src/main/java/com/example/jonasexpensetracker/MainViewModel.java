@@ -10,12 +10,16 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<Double> monthlyIncomeLiveData = new MutableLiveData<>(0.0);
     private final MutableLiveData<Double>totalExpenseLiveData=new MutableLiveData<>(0.0);
     private final MutableLiveData<Double>currentBalanceLiveData=new MutableLiveData<>(0.0);
-
     double inputNewExpense;
     public MainViewModel(Model model){
         super();
         this.model=model;
     }
+
+    public void setMonthlyIncome(double doub){
+        monthlyIncomeLiveData.setValue(doub);
+    }
+
 
     public LiveData<Double>getMonthlyIncome(){
         return monthlyIncomeLiveData;
@@ -32,7 +36,7 @@ public class MainViewModel extends ViewModel {
         totalExpenseLiveData.setValue(model.getTotal());
     }
     public void getCurrentBalanceFromModel(){
-        currentBalanceLiveData.setValue(model.getCurrentBalance());
+        currentBalanceLiveData.setValue(model.getCurrentBalance(monthlyIncomeLiveData.getValue()));
     }
 
 
