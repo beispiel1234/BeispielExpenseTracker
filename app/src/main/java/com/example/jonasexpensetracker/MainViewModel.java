@@ -1,10 +1,13 @@
 package com.example.jonasexpensetracker;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 
 public class MainViewModel extends ViewModel {
 
@@ -13,6 +16,9 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<BigDecimal>totalExpenseLiveData=new MutableLiveData<>(new BigDecimal("0.00"));
     private final MutableLiveData<BigDecimal>currentBalanceLiveData=new MutableLiveData<>(new BigDecimal("0.00"));
     BigDecimal inputNewExpense;
+
+    private HashMap<Integer,String> expenses=new HashMap<>();
+    private int currentHMIndex=0;
     public MainViewModel(Model model){
         super();
         this.model=model;
@@ -21,8 +27,6 @@ public class MainViewModel extends ViewModel {
     public void setMonthlyIncome(BigDecimal bigdecimal){
         monthlyIncomeLiveData.setValue(bigdecimal);
     }
-
-
     public LiveData<BigDecimal>getMonthlyIncome(){
         return monthlyIncomeLiveData;
     }
@@ -32,7 +36,6 @@ public class MainViewModel extends ViewModel {
     public LiveData<BigDecimal>getCurrentBalance(){
         return currentBalanceLiveData;
     }
-
     public void getTotalExpenseFromModel(BigDecimal amount){
         model.addExpenses(amount);
         totalExpenseLiveData.setValue(model.getTotal());
@@ -43,8 +46,6 @@ public class MainViewModel extends ViewModel {
     public void getCurrentBalanceFromModel(){
         currentBalanceLiveData.setValue(model.getCurrentBalance(currentBalanceLiveData.getValue()));
     }
-
-
     public void onInputAmountChanged(String string){
         if(!string.equals("")) {
             this.inputNewExpense = BigDecimal.valueOf(Double.parseDouble(string));
@@ -54,5 +55,10 @@ public class MainViewModel extends ViewModel {
         return  inputNewExpense;
     }
 
+    public void setExpenses(BigDecimal bigDecimal, String string) {
+        expenses.put(currentHMIndex,string+":      "+bigDecimal);
+        currentHMIndex++;
+        Log.e("hmExpenses",string+" "+bigDecimal+" €");
+    }
 
 }

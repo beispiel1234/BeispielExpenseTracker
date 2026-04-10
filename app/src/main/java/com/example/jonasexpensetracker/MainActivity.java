@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
             }
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-                String input=charSequence.toString();
+                    String input=charSequence.toString();
                     viewModel.onInputAmountChanged(input);
             }
             @Override
@@ -75,6 +75,9 @@ public class MainActivity extends AppCompatActivity {
             BigDecimal amount=viewModel.getInputAmount();
             viewModel.getTotalExpenseFromModel(amount);
             viewModel.getCurrentBalanceFromModel();
+
+            //whenever a new expense was put in, ask what that expense was for
+            askForExpenseReason();
         });
 
     }
@@ -89,6 +92,19 @@ public class MainActivity extends AppCompatActivity {
         viewModel.getCurrentBalance().observe(this,total->{
             binding.CurrentBalance.setText("Current Balance: "+String.valueOf(total)+"€");
         });
+    }
+    private void askForExpenseReason(){
+        AlertDialog.Builder builder=new AlertDialog.Builder(this);
+        builder.setTitle("What was that expense spend on?");
+        final EditText input=new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        builder.setView(input);
+        builder.setPositiveButton("OK",(dialog,which)->{
+          String reason=input.getText().toString();
+
+          viewModel.setExpenses(viewModel.getInputAmount(),reason);
+        });
+        builder.show();
     }
 
 }
