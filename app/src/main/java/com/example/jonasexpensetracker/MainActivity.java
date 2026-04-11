@@ -1,4 +1,5 @@
 package com.example.jonasexpensetracker;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.Editable;
@@ -79,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
             //whenever a new expense was put in, ask what that expense was for
             askForExpenseReason();
         });
+        binding.showExpenses.setOnClickListener(v->{
+            gotoListExpensesActivity();
+        });
 
     }
 
@@ -105,6 +109,10 @@ public class MainActivity extends AppCompatActivity {
           viewModel.setExpenses(viewModel.getInputAmount(),reason);
         });
         builder.show();
+    }
+    private void gotoListExpensesActivity(){
+        Intent intent=new Intent(MainActivity.this, ListExpensesActivity.class);
+        startActivity(intent);
     }
 
 }
