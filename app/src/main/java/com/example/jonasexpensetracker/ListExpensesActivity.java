@@ -1,16 +1,11 @@
 package com.example.jonasexpensetracker;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
-import android.util.Log;
-
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.example.jonasexpensetracker.databinding.ActivityListExpensesBinding;
 
-import java.util.HashMap;
+
 
 public class ListExpensesActivity extends AppCompatActivity {
 
