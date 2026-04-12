@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 public class MainViewModel extends ViewModel {
@@ -17,7 +18,7 @@ public class MainViewModel extends ViewModel {
     private final MutableLiveData<BigDecimal>currentBalanceLiveData=new MutableLiveData<>(new BigDecimal("0.00"));
     BigDecimal inputNewExpense;
 
-    private HashMap<Integer,String> expenses=new HashMap<>();
+    private ArrayList<String> expenses=new ArrayList<>();
     private int currentHMIndex=0;
     public MainViewModel(Model model){
         super();
@@ -56,9 +57,11 @@ public class MainViewModel extends ViewModel {
     }
 
     public void setExpenses(BigDecimal bigDecimal, String string) {
-        expenses.put(currentHMIndex,string+":      "+bigDecimal);
-        currentHMIndex++;
+        expenses.add(string+":      "+bigDecimal+" €");
         Log.e("hmExpenses",string+" "+bigDecimal+" €");
+    }
+    public ArrayList<String> getExpenses(){
+        return expenses;
     }
 
 }

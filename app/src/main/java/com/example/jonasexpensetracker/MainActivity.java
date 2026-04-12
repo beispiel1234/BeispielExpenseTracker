@@ -112,6 +112,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void gotoListExpensesActivity(){
         Intent intent=new Intent(MainActivity.this, ListExpensesActivity.class);
+        intent.putExtra("ExpensesList",viewModel.getExpenses());
+        Log.e("testArrayList",viewModel.getExpenses().get(0));
         startActivity(intent);
     }
 
