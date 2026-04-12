@@ -83,6 +83,7 @@
         android:layout_width="150dp"
         android:layout_height="49dp"
         android:text="Add expense"
+        android:backgroundTint="#FF6700"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/inputAmountSpend" />
@@ -94,6 +95,7 @@
         android:layout_marginStart="40dp"
         android:layout_marginTop="72dp"
         android:text="Show expenses"
+        android:backgroundTint="#FF6700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/loadSave"
         app:layout_constraintHorizontal_bias="0.0"
@@ -108,6 +110,7 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="40dp"
         android:text="Load/Save"
+        android:backgroundTint="#FF6700"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addExpenseButton"
